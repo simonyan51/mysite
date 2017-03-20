@@ -169,7 +169,7 @@ class MovieController extends Controller
     }
 
     public function removeComment($movieId, $commentId) {
-        $comment = Comment::find($commentId) -> first();
+        $comment = Comment::find($commentId);
         $comment -> delete();
         return redirect("/admin/tables/movies/". $movieId);
     }

@@ -76,12 +76,7 @@
 	<hr />
 	<div class="comments-block">
 	<h1>Commentaries</h1>
-	<div class="comments" id="comments">
-		@foreach($movie -> comments as $comment)
-        <p><span style='color: red'>{{$comment -> user_name}}</span>: {{$comment -> comment}}<br /><span style='color: blue'>Time: {{$comment -> time}}</span></p> 
-    	@endforeach
-    </div>
-    @if(!Auth::check())
+	@if(!Auth::check())
 	<p>Please, Log In For Comments</p>
 	@else
 			<div class="clear-both"></div>
@@ -90,6 +85,11 @@
 			<input type="submit" name="submitComment" value="Go!" id="submitComment" />
 			<div class="clear-both"></div>
 	@endif
+	<div class="comments" id="comments">
+		@foreach($movie -> comments as $comment)
+        <p><span style='color: red'>{{$comment -> user_name}}</span>: {{$comment -> comment}}<br /><span style='color: blue'>Time: {{$comment -> time}}</span></p> 
+    	@endforeach
+    </div>
 	</div>
 </div>
 @if(Auth::check())
