@@ -78,7 +78,7 @@ class HomeController extends Controller
     public function comment($id, Request $request) {
         $comment = new Comment();
         $comment -> user_id = $request -> input("user_id");
-        $comment -> user_name = $request -> input("user_name");
+        $comment -> user_name = Auth::user() -> name;
         $comment -> movie_id = $request -> input("movie_id");
         $comment -> comment = $request -> input("comment");
         $comment -> save();

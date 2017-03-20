@@ -33,6 +33,11 @@
 			<p>In Theaters Time: {{$movie -> in_theaters_time}}</p>
 		</div>
 	</div>
+	<div>
+		@foreach ($movie -> comments as $comment)
+			<p><span style='color: red'>{{$comment -> user_name}}</span>: {{$comment -> comment}}<br /><span>Time: {{$comment -> time}}</span><a href="{{$movie -> id}}/comment/{{$comment -> id}}/remove_comment"><i class="fa fa-trash" aria-hidden="true"></i></a></p> 
+		@endforeach
+	</div>
 	<a href="/admin/tables/movies" class="btn btn-primary"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
 </div>
 @stop

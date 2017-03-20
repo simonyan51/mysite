@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Movie;
 use App\Year;
+use App\Comment;
 use Carbon\Carbon;
 use DateTime;
 
@@ -165,6 +166,12 @@ class MovieController extends Controller
         $movie -> genres() -> sync($genre);
 
         return redirect('/admin/tables/movies');
+    }
+
+    public function removeComment($movieId, $commentId) {
+        $comment = Comment::find($commentId) -> first();
+        $comment -> delete();
+        return redirect("/admin/tables/movies/". $movieId);
     }
 
     /**

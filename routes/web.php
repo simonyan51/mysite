@@ -44,6 +44,8 @@ Route::group(['middleware' => 'auth'], function() {
 		Route::get('/admin/tables/movies/{id}/publish', 'Admin\MovieController@publish');
 		Route::get('/admin/tables/movies/{id}/unpublish', 'Admin\MovieController@publish');
 
+		Route::get('/admin/tables/movies/{movieId}/comment/{commentId}/remove_comment', 'Admin\MovieController@removeComment');
+
 		Route::get('/admin/tables/genres', 'Admin\GenreController@index');
 		Route::post('/admin/tables/genres', 'Admin\GenreController@create');
 		Route::get('/admin/tables/genres/{id}/edit_genre', 'Admin\GenreController@update');

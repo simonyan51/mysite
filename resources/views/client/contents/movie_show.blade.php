@@ -81,32 +81,40 @@
         <p><span style='color: red'>{{$comment -> user_name}}</span>: {{$comment -> comment}}<br /><span style='color: blue'>Time: {{$comment -> time}}</span></p> 
     	@endforeach
     </div>
+    @if(!Auth::check())
+	<p>Please, Log In For Comments</p>
+	@else
 			<div class="clear-both"></div>
 			<input type="text" name="comment" class="comments-area" id="commentsArea" placeholder="Leave Comments Here"/><br /><br />
 			<div class="clear-both"></div>
 			<input type="submit" name="submitComment" value="Go!" id="submitComment" />
 			<div class="clear-both"></div>
+	@endif
 	</div>
 </div>
-<script>
-	$('input[name="rating"]').click(function(rating) {
-		$.ajax({
-			type: "get",
-			url: "/client/movies/"+ {{$movie -> id}} + "/rating",
-			data: {"rating": $(this).val()},
-			success: $(".rating").html("<p>Thanks For Rating!</p>")
+@if(Auth::check())
+	<script>
+		$('input[name="rating"]').click(function(rating) {
+			$.ajax({
+				type: "get",
+				url: "/client/movies/"+ {{$movie -> id}} + "/rating",
+				data: {"rating": $(this).val()},
+				success: $(".rating").html("<p>Thanks For Rating!</p>")
+			});
 		});
-	});
 
-	for(i = 1; i <= 5; i++) {
-		if ({{$movie -> rating}} == 0) {
-			break;
+		for(i = 1; i <= 5; i++) {
+			if ({{$movie -> rating}} == 0) {
+				break;
+			}
+	 		$("#ratedStar" + i + " img").attr("src", "{{asset('/css/images/star_enabled.png')}}");
+			if ($("#ratedStar" + i + " img").attr("alt") == {{$movie -> rating}}) {
+				break;
+			}
 		}
- 		$("#ratedStar" + i + " img").attr("src", "{{asset('/css/images/star_enabled.png')}}");
-		if ($("#ratedStar" + i + " img").attr("alt") == {{$movie -> rating}}) {
-			break;
-		}
-	}
+	</script>
+	<script>
+
 	$("#submitComment").click(function() {
 		if ($("#commentsArea").val() === "") {
 			$("#commentsArea").css("border", "1px solid red");
@@ -115,11 +123,13 @@
 		$.ajax({
 			type: "get",
 			url: "/client/movies/" + {{$movie -> id}} + "/comment",
-			data: {"user_id": {{Auth::user() -> id}}, "user_name": {{Auth::user() -> name}}, "movie_id": {{$movie -> id}}, "comment": $("#commentsArea").val()},
+			data: {"user_id": {{Auth::user() -> id}}, "movie_id": {{$movie -> id}}, "comment": $("#commentsArea").val()},
 			success: function() {
 				$("#comments").append("<p><span style='color: red'>{{Auth::user() -> name}}:</span> " + $("#commentsArea").val() + "<br /> <span style='color: blue'>Time: " + dateFormat(new Date(), "mm/dd/yy, h:MM:ss TT") + "</span></p>");
 			}
 		})
 	});
-</script>
+
+	</script>
+@endif
 @stop
