@@ -20,7 +20,7 @@ class MovieController extends Controller
      */
     public function index()
     {   
-        $movies = Movie::with('genres')->orderBy("updated_at", "desc") -> paginate(5);
+        $movies = Movie::with('genres')->orderBy("created_at", "desc") -> paginate(5);
         return view("/admin.tables.movies.movies", ['movies' => $movies]);
     }
 

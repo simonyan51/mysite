@@ -29,13 +29,13 @@ class HomeController extends Controller
         $this -> movies = Movie::with('genres') -> with('comments') 
         -> where('publish', 1)
         -> where('publish_time', "<=",  $this -> time)
-        -> orderBy('updated_at', 'desc') ->get();
+        -> orderBy('created_at', 'desc') ->get();
         $this -> genres = Genre::orderBy("id", "desc") -> get();
 
         $this -> soonMovies = Movie::with('genres') 
         -> where('publish', 1)
         -> where('publish_time', ">",  $this -> time)
-        -> orderBy('updated_at', 'desc') ->get();
+        -> orderBy('created_at', 'desc') ->get();
 
         $this -> inTheatersTime($this -> movies);
     }
@@ -59,9 +59,14 @@ class HomeController extends Controller
                 'movie' => $movie, 
                 "ratedUser" => $ratedUser,
                 "genres" => $this -> genres,
+                "currentDate" => $this -> time
                 ]);
         }
-        return view('client.contents.movie_show', ['movie' => $movie, "genres" => $this -> genres]);
+        return view('client.contents.movie_show', ['movie' => $movie, "currentDate" => $this -> time, "genres" => $this -> genres]);
+    }
+
+    public function news() {
+        return view('client.contents.news', ['movies' => $this -> movies, "genres" => $this -> genres]);
     }
 
     public function rate($id, Request $request)

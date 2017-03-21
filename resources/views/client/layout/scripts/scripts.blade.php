@@ -15,3 +15,4 @@
 	<script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js"></script>
 	<script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js"></script>
 	<script src="{{asset('plugins/datepickers/datepicker.js')}}"></script>
+	<script src="{{asset('plugins/theaterChairs/theaterChairs.js')}}"></script>

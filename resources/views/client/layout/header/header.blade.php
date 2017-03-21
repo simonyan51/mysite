@@ -14,7 +14,7 @@
 		<div id="navigation">
 			<ul>
 			    <li><a class="active" href="/client/movies">HOME</a></li>
-			    <li><a href="#">NEWS</a></li>
+			    <li><a href="/client/movies/news">NEWS</a></li>
 			    <li><a href="/client/movies/in_theaters">IN THEATERS</a></li>
 			    <li><a href="/client/movies/coming_soom">COMING SOON</a></li>
 

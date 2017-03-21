@@ -30,4 +30,7 @@ class User extends Authenticatable
     public function movies() {
         return $this -> belongsToMany("App\Movie");
     }
+    public function chairs() {
+        return $this -> belongsToMany("App\Chair");
+    }
 }

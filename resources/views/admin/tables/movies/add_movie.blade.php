@@ -51,15 +51,15 @@
 			<label>Description</label><textarea name="descr" class="form-control" placeholder="Description"></textarea><br />
 			<label>Image</label><input type="file" name="image" id="exampleInputFile" /><br />
 			<label>Publish Time</label>
-			<div id="datetimepicker1" class="input-append date">
+			<div id="datetimepicker" class="input-append date">
 		      <input type="text" name="publish_time" placeholder="Select Publish Time" />
 		      <span class="add-on">
 		        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
 		      </span>
 		    </div>
 		    <label>In Theaters Time</label>
-			<div id="datetimepicker2" class="input-append date">
-		      <input type="text" name="in_theaters_time" />
+			<div id="datetimepicker1" class="input-append date">
+		      <input type="text" name="in_theaters_time" placeholder="Select In Theater Time" />
 		      <span class="add-on">
 		        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
 		      </span>

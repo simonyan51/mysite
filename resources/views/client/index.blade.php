@@ -18,6 +18,11 @@
 			</div>
 			@yield('movies_list')
 			@yield('movie_show')
+			@yield('news')
+			@yield('theaters')
+			@yield('red_theater')
+			@yield('green_theater')
+			@yield('blue_theater')
 			<div class="cl">&nbsp;</div>
 		</div>
 		@include('client.layout.footer.footer')

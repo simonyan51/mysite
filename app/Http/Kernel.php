@@ -55,5 +55,7 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\Admin::class,
         'home' => \App\Http\Middleware\Home::class,
         'rated' => \App\Http\Middleware\Rated::class,
+        'theaterTime' => \App\Http\Middleware\TheaterTime::class,
+
     ];
 }

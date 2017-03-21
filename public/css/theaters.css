@@ -1,0 +1,8 @@
+.theaters {
+	/*float: left;*/
+	cursor: pointer;
+}
+.title {
+	font-size: 18px;
+	cursor: pointer;
+}

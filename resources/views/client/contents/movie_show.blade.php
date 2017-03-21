@@ -70,6 +70,9 @@
 	<br />
 	<p><span class="titles">Description:</span> {{$movie->descr}}</p>
 	<br>
+	@if(Auth::check() && ($movie -> in_theaters_time > $currentDate))
+	<a class="btn btn-primary" href="/client/movies/{{$movie -> id}}/order_movie">Order Movie</a>
+	@endif
 	<a class="back" href="/client/movies">Back</a>
 	</div>
 	<div class="clear-both"></div>
@@ -92,6 +95,17 @@
     </div>
 	</div>
 </div>
+<script>
+	for(var i = 1; i <= 5; i++) {
+			if ({{$movie -> rating}} == 0) {
+				break;
+			}
+	 		$("#ratedStar" + i + " img").attr("src", "{{asset('/css/images/star_enabled.png')}}");
+			if ($("#ratedStar" + i + " img").attr("alt") == {{$movie -> rating}}) {
+				break;
+			}
+		}
+</script>
 @if(Auth::check())
 	<script>
 		$('input[name="rating"]').click(function(rating) {
@@ -103,15 +117,6 @@
 			});
 		});
 
-		for(i = 1; i <= 5; i++) {
-			if ({{$movie -> rating}} == 0) {
-				break;
-			}
-	 		$("#ratedStar" + i + " img").attr("src", "{{asset('/css/images/star_enabled.png')}}");
-			if ($("#ratedStar" + i + " img").attr("alt") == {{$movie -> rating}}) {
-				break;
-			}
-		}
 	</script>
 	<script>
 

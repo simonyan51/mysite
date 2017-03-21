@@ -15,6 +15,7 @@ Route::group(["middleware" => "web"], function() {
 });
 
 Route::get('/client/movies', 'Client\HomeController@index');
+Route::get("/client/movies/news", "Client\HomeController@news");
 Route::get("/client/movies/in_theaters", "Client\HomeController@inTheaters");
 Route::post('/client/movies/search', 'Client\HomeController@search');
 Route::get('/client/movies/coming_soom', 'Client\HomeController@comingSoon');
@@ -27,6 +28,12 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::get('/client/movies/{id}/rating', "Client\HomeController@rate") -> middleware('rated');
 	Route::get("/client/movies/{id}/comment", "Client\HomeController@comment");
+	Route::group(['middleware' => 'theaterTime'], function() {
+		Route::get("/client/movies/{id}/order_movie", "Client\TheaterController@index"); 
+		Route::get("/client/movies/{id}/order_movie/blue_theater", "Client\TheaterController@blueTheater");
+		Route::get("/client/movies/{id}/order_movie/green_theater", "Client\TheaterController@greenTheater");
+		Route::get("/client/movies/{id}/order_movie/red_theater", "Client\TheaterController@redTheater");
+	});		
 	Route::group(['middleware' => 'home'], function() {
 
 	});
