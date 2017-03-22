@@ -53,7 +53,7 @@ class TheaterController extends Controller
     		$theater -> movies() -> attach($id);
     		$movie -> chairs() -> attach($request -> chair_id);
     	}
-    	return view("client.contents.theaters.red_theater", ["movie" => $movie, "genres" => $this -> genres, "chairs" => $theater -> chairs, "movieChairs" => $movie -> chairs]);
+    	return view("client.contents.theaters.red_theater", ["movie" => $movie, "genres" => $this -> genres, "chairs" => $theater -> chairs, "movieChairs" => $movie -> chairs, "user" => $user -> chairs]);
     }
     
     public function blueTheater($id, Request $request) {
@@ -66,7 +66,7 @@ class TheaterController extends Controller
     		$theater -> movies() -> attach($id);
     		$movie -> chairs() -> attach($request -> chair_id);
     	}
-    	return view("client.contents.theaters.blue_theater", ["movie" => $movie, "genres" => $this -> genres, "chairs" => $theater -> chairs, "movieChairs" => $movie -> chairs]);	
+    	return view("client.contents.theaters.blue_theater", ["movie" => $movie, "genres" => $this -> genres, "chairs" => $theater -> chairs, "movieChairs" => $movie -> chairs, "user" => $user -> chairs]);	
     }
     
     public function greenTheater($id, Request $request) {
@@ -79,6 +79,6 @@ class TheaterController extends Controller
     		$theater -> movies() -> attach($id);
     		$movie -> chairs() -> attach($request -> chair_id);
     	}
-    	return view("client.contents.theaters.green_theater", ["movie" => $movie, "genres" => $this -> genres, "chairs" => $theater -> chairs, "movieChairs" => $movie -> chairs]);
+    	return view("client.contents.theaters.green_theater", ["movie" => $movie, "genres" => $this -> genres, "chairs" => $theater -> chairs, "movieChairs" => $movie -> chairs, "user" => $user -> chairs]);
     }
 }

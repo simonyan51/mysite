@@ -32,8 +32,9 @@
 	@foreach($movieChairs as $movieChair)
 	<script>
 	for (var i = 1; i < 401; i++) {
-		if ({{$chair["chair"]}} == $("#chair" + i).html() && {{$movieChair["chair"]}} == $("#chair" + i).html()) {
+		if ({{$chair["chair"]}} === +$("#chair" + i).html() && {{$movieChair["chair"]}} === +$("#chair" + i).html() && {{$movieChair["chair"]}} === {{$chair["chair"]}}) {
 			$("#chair" + i).css("background-color", "rgb(255, 0, 0)");
+			break;
 		}
 	}
 	</script>

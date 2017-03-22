@@ -72,6 +72,8 @@
 	<br>
 	@if(Auth::check() && ($movie -> in_theaters_time > $currentDate))
 	<a class="btn btn-primary" href="/client/movies/{{$movie -> id}}/order_movie">Order Movie</a>
+	@elseif (!Auth::check())
+	<p>Please, Log In For Ordering Movie</p>
 	@endif
 	<a class="back" href="/client/movies">Back</a>
 	</div>

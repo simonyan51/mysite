@@ -40,7 +40,6 @@ class TheaterController extends Controller
 
     public function show($id) {
         $movie = $this -> movies -> where("id", $id) -> first();
-
         return view("/admin/tables/theater/order", ["movie" => $movie, "users" => $this -> users, "movieChairs" => $movie -> chairs, "theaters" => $this -> theaters]);
     }
 }
