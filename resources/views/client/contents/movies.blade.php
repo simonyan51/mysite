@@ -9,6 +9,7 @@
 					<h2>LATEST TRAILERS</h2>
 					<p class="text-right"><a href="#">See all</a></p>
 				</div>
+				
 				@foreach($movies as $movie)
 				<!-- Movie -->
 				<div class="movie selectedMovie{{$movie->id}} movies" style="width: 184.01px;">
@@ -30,6 +31,7 @@
 						<span class="movie-stars" id="ratedStar5"><img src="{{asset('/css/images/star_disabled.png')}}" alt="5" /></span>
 					</div>
 				</div>
+				
 				<script>
 					for(i = 1; i <= 5; i++) {
 						if ({{$movie -> rating}} == 0) {

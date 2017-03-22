@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Movie;
+use Auth;
 
 class TheaterTime
 {
@@ -18,7 +19,9 @@ class TheaterTime
     {
         $movie = Movie::with("theaters") -> where("id", $request -> id) -> first();
         if ($movie -> in_theaters !== 1) {
-            return redirect("/client/movies/". $request -> id);
+            if (Auth::user() -> admin === 0)
+                return redirect("/client/movies/");
+            return redirect("/admin/tables/movies");
         }
         return $next($request);
     }

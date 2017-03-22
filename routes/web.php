@@ -40,9 +40,12 @@ Route::group(['middleware' => 'auth'], function() {
 
 	Route::group(['middleware' => 'admin'], function() {
 		Route::get('/admin/dashboards/dashboard1', 'Admin\AdminController@index');
-		Route::get('/admin/tables/movies', 'Admin\MovieController@index');
+		Route::get('/admin/tables/movies', 'Admin\MovieController@index');		
 		Route::get('/admin/tables/movies/add_movie', 'Admin\AddController@index');
 		Route::post('/admin/tables/movies/add_movie', 'Admin\MovieController@create');
+		Route::get('/admin/tables/in_theaters/movies', 'Admin\TheaterController@index');
+		Route::get('/admin/tables/in_theaters/movies/{id}/orders', 'Admin\TheaterController@show') -> middleware('theaterTime');
+
 		Route::get('/admin/tables/movies/{id}', 'Admin\MovieController@show');
 		Route::get('/admin/tables/movies/{id}/edit_movie', 'Admin\EditController@index');
 		Route::post('/admin/tables/movies/{id}/edit_movie', 'Admin\MovieController@update');

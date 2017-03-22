@@ -15,6 +15,8 @@
   @yield('genre_show')
   @yield('add_genre')
   @yield('edit_genre')
+  @yield('in_theaters')
+  @yield('order');
   @include('admin.layout.footer.footer')
 </div>
 @include('admin.layout.sidebar.right_sidebar')

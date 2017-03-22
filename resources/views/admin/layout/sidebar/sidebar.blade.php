@@ -48,6 +48,7 @@
             <li><a href="{{asset('/admin/tables/simple')}}"><i class="fa fa-circle-o"></i> Simple tables</a></li>
             <li><a href="{{asset('/admin/tables/movies')}}"><i class="fa fa-circle-o"></i> Movies List</a></li>
             <li><a href="{{asset('/admin/tables/genres')}}"><i class="fa fa-circle-o"></i> Genres List</a></li>
+            <li><a href="{{asset('/admin/tables/in_theaters/movies/')}}"><i class="fa fa-circle-o"></i> Movies In Theaters</a></li>
           </ul>
         </li>
         <li class="treeview">
