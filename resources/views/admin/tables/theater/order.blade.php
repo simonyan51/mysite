@@ -2,6 +2,27 @@
 
 @section('order')
   </script>
+  <script>
+    $(document).ready(function() {
+      $(document).on("click", ".pagination a", function(e) {
+          e.preventDefault();
+          var page = $(this).attr("href").split("page=")[1];
+          getProducts(page);
+        });
+
+        function getProducts(page) {
+          $.ajax({
+            url: "/admin/tables/movies?page=" + page,
+            type: 'get'
+          }).done(function(data) {
+
+            $(".wrapper").html(data);
+
+            location.hash = page;
+          });
+      }
+    });
+  </script>
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
