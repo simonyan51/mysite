@@ -12,7 +12,7 @@
 
         function getProducts(page) {
           $.ajax({
-            url: "/admin/tables/movies?page=" + page,
+            url: "/admin/tables/in_theaters/movies/{{$movie -> id}}/orders?page=" + page,
             type: 'get'
           }).done(function(data) {
 
