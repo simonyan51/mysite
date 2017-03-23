@@ -29,16 +29,15 @@
 		}
 	</script>
 	@foreach($chairs as $chair)
-	@foreach($movieChairs as $movieChair)
+
 	<script>
 	for (var i = 1; i < 401; i++) {
-		if ({{$chair["chair"]}} === +$("#chair" + i).html() && {{$movieChair["chair"]}} === +$("#chair" + i).html() && {{$movieChair["chair"]}} === {{$chair["chair"]}}) {
+		if ({{$chair -> chair}} === +($("#chair" + i).html()) && {{$chair -> movie_id}} === {{$movie -> id}} && {{$chair -> theater_id}} === 2) {
 			$("#chair" + i).css("background-color", "rgb(255, 0, 0)");
 			break;
 		}
 	}
 	</script>
-	@endforeach
 	@endforeach
 	<script>
 		$(".chairs").click(function() {

@@ -27,10 +27,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function movies() {
-        return $this -> belongsToMany("App\Movie");
-    }
     public function chairs() {
-        return $this -> belongsToMany("App\Chair");
+        return $this -> hasMany("App\Chair");
     }
 }

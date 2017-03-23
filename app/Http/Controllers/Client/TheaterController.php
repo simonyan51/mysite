@@ -34,8 +34,9 @@ class TheaterController extends Controller
         -> where('publish', 1)
         -> where('publish_time', ">",  $this -> time)
         -> orderBy('created_at', 'desc') -> get();
-        $this -> theaters = Theater::with("chairs", "movies") -> get();
+        $this -> theaters = Theater::with("chairs") -> get();
         $this -> users = User::with("chairs") -> get();
+        $this -> chairs = Chair::all();
     }
 
     public function index($id) {
@@ -44,41 +45,47 @@ class TheaterController extends Controller
     }
 
     public function redTheater($id, Request $request) {
-    	$theater = $this -> theaters -> where("id", 3) -> first();
-    	$movie = $this -> movies -> where("id", $id) -> first();
-    	$user = $this -> users -> where("id", Auth::user() -> id) -> first();
-    	if ($request -> chair_id) {
-    		$user -> chairs() -> attach($request -> chair_id);
-    		$theater -> chairs() -> attach($request -> chair_id);
-    		$theater -> movies() -> attach($id);
-    		$movie -> chairs() -> attach($request -> chair_id);
-    	}
-    	return view("client.contents.theaters.red_theater", ["movie" => $movie, "genres" => $this -> genres, "chairs" => $theater -> chairs, "movieChairs" => $movie -> chairs, "user" => $user -> chairs]);
+        $chairs = new Chair();
+        $theater = $this -> theaters -> where("id", 3) -> first();
+        $movie = $this -> movies -> where("id", $id) -> first();
+        $user = $this -> users -> where("id", Auth::user() -> id) -> first();
+        if ($request -> chair_id) {
+            $chairs -> user_id = $user -> id;
+            $chairs -> theater_id = 3;
+            $chairs -> movie_id = $id;
+            $chairs -> chair = $request -> chair_id;
+            $chairs -> save();
+        }
+        return view("client.contents.theaters.red_theater", ["movie" => $movie, "genres" => $this -> genres, "chairs" => $this -> chairs]);
     }
     
     public function blueTheater($id, Request $request) {
-    	$theater = $this -> theaters -> where("id", 2) -> first();
-    	$movie = $this -> movies -> where("id", $id) -> first();
-    	$user = $this -> users -> where("id", Auth::user() -> id) -> first();
-    	if ($request -> chair_id) {
-    		$user -> chairs() -> attach($request -> chair_id);
-    		$theater -> chairs() -> attach($request -> chair_id);
-    		$theater -> movies() -> attach($id);
-    		$movie -> chairs() -> attach($request -> chair_id);
-    	}
-    	return view("client.contents.theaters.blue_theater", ["movie" => $movie, "genres" => $this -> genres, "chairs" => $theater -> chairs, "movieChairs" => $movie -> chairs, "user" => $user -> chairs]);	
+    	$chairs = new Chair();
+        $theater = $this -> theaters -> where("id", 2) -> first();
+        $movie = $this -> movies -> where("id", $id) -> first();
+        $user = $this -> users -> where("id", Auth::user() -> id) -> first();
+        if ($request -> chair_id) {
+            $chairs -> user_id = $user -> id;
+            $chairs -> theater_id = 2;
+            $chairs -> movie_id = $id;
+            $chairs -> chair = $request -> chair_id;
+            $chairs -> save();
+        }
+        return view("client.contents.theaters.blue_theater", ["movie" => $movie, "genres" => $this -> genres, "chairs" => $this -> chairs]);
     }
     
     public function greenTheater($id, Request $request) {
-    	$theater = $this -> theaters -> where("id", 1) -> first();
-    	$movie = $this -> movies -> where("id", $id) -> first();
-    	$user = $this -> users -> where("id", Auth::user() -> id) -> first();
-    	if ($request -> chair_id) {
-    		$user -> chairs() -> attach($request -> chair_id);
-    		$theater -> chairs() -> attach($request -> chair_id);
-    		$theater -> movies() -> attach($id);
-    		$movie -> chairs() -> attach($request -> chair_id);
-    	}
-    	return view("client.contents.theaters.green_theater", ["movie" => $movie, "genres" => $this -> genres, "chairs" => $theater -> chairs, "movieChairs" => $movie -> chairs, "user" => $user -> chairs]);
+    	$chairs = new Chair();
+        $theater = $this -> theaters -> where("id", 1) -> first();
+        $movie = $this -> movies -> where("id", $id) -> first();
+        $user = $this -> users -> where("id", Auth::user() -> id) -> first();
+        if ($request -> chair_id) {
+            $chairs -> user_id = $user -> id;
+            $chairs -> theater_id = 1;
+            $chairs -> movie_id = $id;
+            $chairs -> chair = $request -> chair_id;
+            $chairs -> save();
+        }
+        return view("client.contents.theaters.green_theater", ["movie" => $movie, "genres" => $this -> genres, "chairs" => $this -> chairs]);
     }
 }

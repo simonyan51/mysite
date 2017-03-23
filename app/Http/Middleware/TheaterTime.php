@@ -17,7 +17,7 @@ class TheaterTime
      */
     public function handle($request, Closure $next)
     {
-        $movie = Movie::with("theaters") -> where("id", $request -> id) -> first();
+        $movie = Movie::with("chairs") -> where("id", $request -> id) -> first();
         if ($movie -> in_theaters !== 1) {
             if (Auth::user() -> admin === 0)
                 return redirect("/client/movies/");

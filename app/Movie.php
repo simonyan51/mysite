@@ -14,19 +14,11 @@ class Movie extends Model
     	return $this -> hasMany("App\Rating");
     }
 
-    public function users() {
-    	return $this -> belongsToMany("App\User");
-    }
-
     public function comments() {
     	return $this -> hasMany("App\Comment");
     }
 
-    public function theaters() {
-        return $this -> belongsToMany("App\Theater");
-    }
-
     public function chairs() {
-        return $this -> belongsToMany("App\Chair");
+        return $this -> hasMany("App\Chair");
     }
 }

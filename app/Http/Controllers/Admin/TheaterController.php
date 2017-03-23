@@ -29,7 +29,7 @@ class TheaterController extends Controller
         -> where('in_theaters', "=", 1)
         -> orderBy('created_at', 'desc');
         $this -> genres = Genre::orderBy("id", "desc") -> get();
-        $this -> theaters = Theater::with("chairs", "movies") -> get();
+        $this -> theaters = Theater::with("chairs") -> get();
         $this -> users = User::with("chairs") -> get();
     }
 
@@ -40,6 +40,7 @@ class TheaterController extends Controller
 
     public function show($id) {
         $movie = $this -> movies -> where("id", $id) -> first();
-        return view("/admin/tables/theater/order", ["movie" => $movie, "users" => $this -> users, "movieChairs" => $movie -> chairs, "theaters" => $this -> theaters]);
+        $chairs = Chair::where("movie_id", $id) -> paginate(10); 
+        return view("/admin/tables/theater/order", ["movie" => $movie, "users" => $this -> users, "theaters" => $this -> theaters, "chairs" => $chairs]);
     }
 }
